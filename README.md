@@ -13,4 +13,7 @@ nix --extra-experimental-features "nix-command flakes" run nixpkgs#home-manager 
 # should setup experimental features in config and install home-manager
 home-manager switch --flake nix/#${USER}
 sudo cp nix/xsession.desktop /usr/share/xsessions/xsession.desktop
+which zsh | sudo tee -a /etc/shells
+chsh -s $(which zsh)
+# reboot?
 ```
