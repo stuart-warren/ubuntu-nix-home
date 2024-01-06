@@ -17,6 +17,7 @@ in {
     wget
     font-awesome_5
     nerdfonts
+    google-chrome
   ];
   fonts.fontconfig.enable = true;
   nix = {
@@ -64,6 +65,10 @@ in {
         share = false;
       };
       profileExtra = "if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi";
+    };
+    chromium = {
+      enable = true;
+      package = pkgs.google-chrome;
     };
   };
 

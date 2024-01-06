@@ -21,7 +21,10 @@
   in {
     homeConfigurations = {
       "${myuser}" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+        pkgs = import nixpkgs {
+          inherit system;
+	  config.allowUnfree = true;
+	};
         modules = [
           ./home-manager/home.nix
         ];
