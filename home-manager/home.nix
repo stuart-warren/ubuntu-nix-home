@@ -6,19 +6,28 @@ let
   myuser = "stuart-warren";
   myhome = "/home/${myuser}";
 in {
-  home.username = "${myuser}";
-  home.homeDirectory = "${myhome}";
-  home.stateVersion = "23.11";
-  home.packages = with pkgs; [
-    neofetch
-    neovim
-    git
-    curl
-    wget
-    font-awesome_5
-    nerdfonts
-    google-chrome
-  ];
+  home = {
+    username = "${myuser}";
+    homeDirectory = "${myhome}";
+    stateVersion = "23.11";
+    packages = with pkgs; [
+      neofetch
+      neovim
+      git
+      curl
+      wget
+      font-awesome_5
+      nerdfonts
+      google-chrome
+    ];
+    keyboard = {
+      layout = "us";
+      variant = "dvorak";
+      options = [
+        "ctrl:nocaps"
+      ];
+    };
+  };
   fonts.fontconfig.enable = true;
   nix = {
     package = pkgs.nix;
@@ -26,7 +35,9 @@ in {
   };
   programs = {
     home-manager.enable = true;
-    fzf.enable = true;
+    fzf = {
+      enable = true;
+    };
     jq.enable = true;
     direnv = {
       enable = true;
@@ -74,6 +85,13 @@ in {
 
   services = {
     ssh-agent.enable = true;
+    xcape = {
+      enable = true;
+      mapExpression = {
+        Control_L = "Escape";
+      };
+      timeout = 100;
+    };
   };
 
   # https://nix-community.github.io/home-manager/options.xhtml#opt-xsession.windowManager.i3.enable

@@ -12,6 +12,7 @@ mkdir -p ~/.local/state/nix/profiles
 nix --extra-experimental-features "nix-command flakes" run nixpkgs#home-manager -- --extra-experimental-features "nix-command flakes" switch --flake nix/#$USER
 # should setup experimental features in config and install home-manager
 home-manager switch --flake nix/#${USER}
+systemd --user enable ~/.config/systemd/user/setxkbmap.service
 sudo cp nix/xsession.desktop /usr/share/xsessions/xsession.desktop
 which zsh | sudo tee -a /etc/shells
 chsh -s $(which zsh)
